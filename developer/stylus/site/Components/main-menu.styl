@@ -1,0 +1,132 @@
+.main-menu
+  background-color: #fff
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25)
+  top: 20px
+  .navbar-toggle .icon-bar
+    background-color: #888
+  .navbar-toggle
+    border-color: #ddd;
+  .navbar-header
+    height: 81px
+  &__menus
+    position: relative
+    min-height: 81px;
+    &.in, &.collapsing
+      background-color: #0165ab;
+      position: relative;
+      top: 0;
+      a
+        color #fff
+        display: block
+        text-decoration: underline;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 0 12px;
+        padding-top: 7px !important;
+        padding-bottom: 7px !important;
+        &:hover
+          color #000
+  &__navigation-menu
+    margin-top: 10px
+    >li
+      >a
+        text-decoration: underline;
+        font-size: 16px;
+        color: #4d4d4d;
+        font-weight: bold;
+        padding: 0 12px;
+        padding-top: 7px!important
+        padding-bottom: 7px!important
+  &__login-menu
+    img
+      margin-right: 6px;
+    .li-item
+      min-width: 100px;
+      position: relative;
+      height: 32px;
+      display: inline-block;
+      a
+        text-decoration: underline;
+        position: relative;
+        font-size: 15px;
+        font-weight: bold;
+        margin: 3px 4px;
+        display: block;
+        color: #4a4a4a;
+        text-align: center;
+      &.login
+        a
+          text-decoration: underline;
+          position: relative;
+          font-size: 15px;
+          font-weight: bold;
+          margin: 3px 4px;
+          display: block;
+          color: #fff;
+          text-align: center;
+        &:before
+          content: "";
+          background: url(../images/left_part.png) no-repeat;
+          display: block;
+          height: 33px;
+          width: 7px;
+          position: absolute;
+          left: 0;
+          top: 0;
+        &:after
+          content: "";
+          background: url(../images/right_part.png) no-repeat;
+          display: block;
+          height: 33px;
+          width: 7px;
+          position: absolute;
+          right: 0;
+          top: 0;
+        div
+          left: 7px;
+          right: 7px;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          background: url(../images/center_part.png) repeat-x;
+  &__logo
+    position: relative
+    a
+      &:before
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index 20
+    span
+      &.big
+        font-size 48px
+      &.tiny
+        font-size 25px
+        line-height: 75px;
+    color #4d4d4d
+    font-weight bold
+    position: relative
+    &:before
+      content ''
+      sprite($main_logo)
+      position: absolute
+      left: 0
+    display: inline-block
+    height: $main_logo_height
+    padding-left: $main_logo_width
+.social
+  display: inline-block;
+  margin-top: 5px;
+
+.button_upslide
+  background: #FF9036;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.50);
+  border-radius: 3px;
+  color: #FFFFFF;
+  font-family: Ubuntu;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 4px 16px;

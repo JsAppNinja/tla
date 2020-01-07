@@ -1,0 +1,15 @@
+<form>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="exampleInputAmount">Monthly amount:</label>
+
+                <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    <input type="text" ng-model="system.settings.student_monthly_amount" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" ng-click="system.save_settings()">Save</button>
+</form>

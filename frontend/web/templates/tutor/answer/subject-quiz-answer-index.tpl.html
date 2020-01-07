@@ -1,0 +1,40 @@
+<div class="form-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Answers</h3>
+            <span>Use the + Add new answer to add multiple choice questions here</span>
+        </div>
+        <div class="panel-body panel-table-body">
+            <h3 ng-show="!answers.length" style="margin-left: 29px;">No answers</h3>
+            <table class="table table-hover answers-list">
+                <tr ng-repeat="answer in answers track by $index" class=" answer-list-item"
+                    ng-click="setRightAnswer($index, $event)">
+
+                    <td>
+                        <span ng-show="answer.correct"
+                              class="glyphicon glyphicon-ok pull-left right-answer"></span>
+                        <span editable-text="answer.content" e-form="textBtnForm"
+                              onbeforesave="checkName($index)">
+                                        <span ng-bind-html="answer.content"></span>
+                                     </span>
+                    </td>
+                    <td>
+                        <button ng-click="deleteAnswer($index)" class="btn btn-xs btn-danger pull-right"><span
+                                class="glyphicon glyphicon-remove"></span></button>
+                        <button ng-click="$event.preventDefault(); editAnswer(answer, $index)"
+                                class="btn btn-xs btn-primary pull-right examtype-edit-btn"><span
+                                class="glyphicon glyphicon-pencil"></span></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <button class="btn btn-primary" ng-click="editing?updateAnswer():addAnswer()" type="button"><span class="glyphicon" ng-class="{'glyphicon-plus': !editing, 'fa fa-refresh': editing}"></span> {{editing?'Update answer':'Add new answer'}}</button>
+    <button ng-show="editing" class="btn btn-danger" ng-click="editing = false;newAnswer = {}">Cancel</button>
+</div>
+
+<div class="form-group">
+    <textarea style="width: 100%;" ui-tinymce="tinymceOptions" rows="3" ng-model="newAnswer.content" class="form-control" placeholder="Enter new answer"></textarea>
+</div>

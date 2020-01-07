@@ -1,0 +1,32 @@
+<div class="form-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Sub-Topics</h3>
+        </div>
+        <div class="panel-body panel-table-body">
+            <table class="table table-hover subtopics-list">
+                <h3 ng-show="isEmptySubTopics" style="margin-left: 29px;">No subtopics</h3>
+                <tr ng-repeat="subtopic in subtopics track by $index" class="subtopic-list-item">
+                    <td><span editable-text="subtopic.name" e-form="textBtnForm"
+                              onbeforesave="checkName($data)" onaftersave="updateSubTopic(subtopic.id)">
+                                        <span ng-bind="subtopic.name"></span>
+                                     </span></td>
+                    <td><button title="Remove topic" ng-click="deleteSubtopic($index)" class="btn btn-xs btn-danger pull-right"><span
+                            class="glyphicon glyphicon-remove"></span></button>
+                        <button title="Edit topic" ng-click="$event.preventDefault(); textBtnForm.$show()"
+                                ng-hide="textBtnForm.$visible"
+                                class="btn btn-xs btn-primary pull-right examtype-edit-btn"><span
+                                class="glyphicon glyphicon-pencil"></span></button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="input-group form-group">
+    <input type="text" ng-model="newSubTopic.name" placeholder="Enter name of Sub-Topic" class="form-control">
+                  <span class="input-group-btn">
+                      <button class="btn btn-primary pull-left" ng-click="createSubTopic()"><span
+                              class="glyphicon glyphicon-plus"></span>Add Sub-Topic
+                      </button>
+                  </span>
+</div>

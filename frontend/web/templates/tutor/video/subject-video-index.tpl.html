@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <button class="btn btn-primary" ng-click="openAddVideoDialog()"><i class="fa fa-plus"></i> Add video
+            </button>
+            <label style="margin-left: 20px;">Add learning video/s to this lesson. Only students you accept will see your materials</label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+            <div class="col-md-3" ng-repeat="video in videos track by $index">
+                <div class="form-group">
+                    <div ng-mouseover="video_actions = true" ng-mouseleave="video_actions = false"
+                         style="position: relative;">
+                        <img width="200" class="media-object" ng-src="{{video.preview_img}}" alt="...">
+
+                        <div ng-if="video.status == 1" class="btn-group tutor-video-actions" ng-show="video_actions">
+                            <button class="btn btn-success" ng-click="showVideo(video)"><i class="fa fa-play"></i></button>
+                            <button class="btn btn-primary" ng-click="openEditVideoDialog(video)"><i
+                                    class="fa fa-pencil-square-o"></i></button>
+                            <button class="btn btn-danger" ng-click="openDeleteVideoDialog(video)"><i class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h4 class="media-heading">{{video.title}}</h4>
+                    <p>{{video.description}}</p>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <span class="lead">After adding your video/s for the lesson, select the Test/Exam tab to create and add questions to the video/s uploaded.</span>
+    </div>
+</div>
+

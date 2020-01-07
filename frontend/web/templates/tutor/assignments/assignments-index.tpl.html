@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <a ui-sref=".create" class="btn btn-primary"><i class="fa fa-plus"></i> Add new assignments</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Assignments list</div>
+            <ul class="list-group">
+                <li ng-if="!assignments.length" class="list-group-item">No assignments</li>
+                <li class="list-group-item clearfix" ng-repeat="assignment in assignments track by $index">
+                    <span class="pull-left">{{assignment.name}}</span>
+                    <span class="pull-right">
+                        <span class="btn-group">
+                            <a ui-sref=".view({assignment_id: assignment.id})" class="btn btn-default btn-xs">Open</a>
+                            <a ui-sref=".edit({assignment_id: assignment.id})" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                            <button class="btn btn-danger btn-xs" ng-click="deleteAssignment(assignment, $index)"><i class="fa fa-trash"></i></button>
+                        </span>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

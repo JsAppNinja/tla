@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-12">
+        <label>Add new announcement</label>
+        <div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="announce.status"  ng-true-value="1" ng-false-value="0"> Active
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label>Date and time</label>
+                            <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown"
+                               href="javascript:;">
+                                <div class="input-group"><input placeholder="Date" type="text" class="form-control"
+                                                                data-ng-model="announce.showingDate" name="
+                                                    date" required><span class="input-group-addon"><i
+                                        class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker data-before-render="beforeRender($view, $dates, $leftDate, $upDate, $rightDate)" data-on-set-time="onTimeSet(newDate, oldDate)" ng-model="announce.date"
+                                                data-datetimepicker-config="{ startView:'month', dropdownSelector: '#dropdown2' }">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Announcement</label>
+                                <textarea id="content" placeholder="Grade level schedule description ..."
+                                          ui-tinymce="tinymceOptions"
+                                          ng-model="announce.text" class="form-control" rows="6"
+                                >{{grade.schedule}}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <button class="btn btn-primary" ng-click="saveAnnouncement(announce)">Save announcement</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

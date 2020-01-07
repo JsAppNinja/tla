@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <button class="btn btn-primary" ng-click="openAddNoteDialog()"><i class="fa fa-plus"></i> Add note</button>
+        </div>
+        <div class="form-group">
+            <label>Add learning note/s to this topic. Only students you accept will see your materials</label>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Notes list</div>
+            <ul class="list-group">
+                <li class="list-group-item" ng-if="!notes.list.length">You don't have any notes</li>
+                <li class="list-group-item clearfix" ng-repeat="note in notes.list track by $index">
+                    <span ng-bind="note.title"></span>
+                    <span> ({{note.origin_file_name}})</span>
+                    <span ng-class="note.status?'label-success':'label-danger'" class="label">{{note.status?'Active':'Deactive'}}</span>
+                    <div class="btn-group pull-right">
+                        <a ng-href="{{note.file_path + '/' + note.file_name}}" download="{{note.origin_file_name}}" class="btn btn-primary btn-xs" title="Download note"><i
+                                class="fa fa-download"></i></a>
+                        <button type="button" class="btn btn-success btn-xs" title="Edit note"
+                                ng-click="openEditNoteDialog(note)"><i class="fa fa-pencil"></i></button>
+                        <button ng-click="deleteNote(note)" type="button" class="btn btn-danger btn-xs" title="Delete note"><i
+                                class="fa fa-trash"></i></button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

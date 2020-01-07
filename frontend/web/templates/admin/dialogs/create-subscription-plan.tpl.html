@@ -1,0 +1,47 @@
+<div class="page-header">
+    <h2>{{edit?"Update":"Create"}} subscription plan</h2>
+</div>
+<form name="subscriptionPlanForm" novalidate>
+<uib-tabset active="active" type="pills">
+    <uib-tab index="0" heading="General">
+        <br>
+            <div class="form-group">
+                <label>Plan name:</label>
+                <input type="text" ng-model="editingPlan.name" class="form-control" placeholder="Subscription plan name" required>
+            </div>
+            <div class="form-group">
+                <label>Students count:</label>
+                <input type="number" ng-model="editingPlan.students_count" class="form-control" min="0"
+                       placeholder="Students count" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputAmount">Monthly amount:</label>
+
+                <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    <input type="text" class="form-control" ng-model="editingPlan.amount" id="exampleInputAmount"
+                           placeholder="Amount">
+
+                    <div class="input-group-addon">.00</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Description:</label>
+                <textarea ng-model="editingPlan.description" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+    </uib-tab>
+    <uib-tab index="1" heading="MobileMoney">
+        <br>
+        <div class="form-group" ng-repeat="country in editingPlan.countries track by $index">
+            <label>{{ country.name }} ({{ country.currency }})</label>
+            <input type="text" class="form-control" ng-model="country.price" placeholder="Enter price in {{ country.name }} {{ country.currency }} ">
+        </div>
+    </uib-tab>
+</uib-tabset>
+</form>
+<div class="ngdialog-buttons">
+    <button type="button" class="ngdialog-button btn btn-danger" ng-click="closeThisDialog(0)">Cancel</button>
+    <button type="submit" class="ngdialog-button btn btn-primary" ng-click="subscriptionPlanForm.$valid?confirm(editingPlan):''">
+        {{edit?"Update plan":"Create plan"}}
+    </button>
+</div>

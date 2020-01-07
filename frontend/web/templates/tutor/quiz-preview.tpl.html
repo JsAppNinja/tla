@@ -1,0 +1,86 @@
+<style>
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h2>Quiz preview</h2>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <div class="row">
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <h1 class="exam-title" ng-bind="practice.name"></h1>
+                    <ul style="margin: 0;padding: 0;">
+                        <li ng-repeat="question in practice.questions track by $index"
+                            class="shadowed practice_question">
+                            <div class="question" ng-bind-html="trustAsHtml(question.content)" style="margin-bottom: 10px;"></div>
+                            <img class="img-responsive" ng-repeat="image in question.images track by $index"
+                                 ng-src="{{image.path}}"/>
+
+                            <div ng-show="question.essay" class="form-group">
+                                <label>Type your essay</label>
+                                    <textarea
+                                            id="" cols="30" rows="10"
+                                            class="form-control"></textarea>
+                            </div>
+                            <ul ng-hide="question.essay" class="answers_list">
+                                <li ng-repeat="answer in question.answers track by answer.id">
+                                    <div class="radio">
+                                        <label style="width: 100%;">
+                                            <input ng-checked="false"
+                                                   ng-model="answer.selected" ng-value="answer.selected"
+                                                   type="radio" name="answer[{{question.id}}]">
+                                            <span class="answer_item" ng-bind-html="trustAsHtml(answer.content)"></span>
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul id="questions" class="sections_list">
+                        <li ng-repeat="section in practice.sections track by $index">
+                            <h2 class="section">Section #{{$index+1}}</h2>
+                            <div class="section_title" ng-bind="section.name"></div>
+                            <img class="img-responsive" ng-repeat="image in section.images"
+                                 ng-src="{{image.path}}"/>
+                            <ul>
+                                <li ng-repeat="question in section.questions" class="shadowed practice_question">
+                                    <div class="question" ng-bind-html="trustAsHtml(question.content)" style="margin-bottom: 10px;"></div>
+                                    <img class="img-responsive" ng-repeat="image in question.images"
+                                         ng-src="{{image.path}}"/>
+
+                                    <div ng-show="question.essay" class="form-group">
+                                        <label>Type your essay</label>
+                                            <textarea
+                                                    cols="30" rows="10"
+                                                    class="form-control"></textarea>
+                                    </div>
+                                    <ul ng-hide="question.essay" class="answers_list">
+                                        <li ng-repeat="answer in question.answers track by answer.id">
+                                            <div class="radio">
+                                                <label style="width: 100%;">
+                                                    <input ng-checked="false"
+                                                           ng-model="answer.selected" ng-value="answer.selected"
+                                                           type="radio" name="answer[{{question.id}}]">
+                                                    <span class="answer_item" ng-bind-html="trustAsHtml(answer.content)"></span>
+
+                                                </label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

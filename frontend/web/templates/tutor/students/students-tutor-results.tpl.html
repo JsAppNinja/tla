@@ -1,0 +1,48 @@
+<div id="result">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Students</label>
+                <ui-select ng-model="student.selected"
+                           on-select="onStudentSelect($item)">
+                    <ui-select-match placeholder="Select student" allow-clear="true">
+                                                    <span
+                                                            ng-bind="$select.selected.first_name + $select.selected.last_name"></span>
+                    </ui-select-match>
+                    <ui-select-choices
+                            repeat="student in (students | filter: $select.search) track by student.id">
+                    <span
+                            ng-bind-html="(student.first_name + student.last_name)| highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>Results list</label>
+            <table class="table table-hover">
+                <tr>
+                    <th>#</th>
+                    <th>Student</th>
+                    <th>Grade level</th>
+                    <th>Lesson</th>
+                    <th>Quiz name</th>
+                    <th>Finished date</th>
+                    <th></th>
+                </tr>
+                <tr ng-show="!results.length"><td colspan="7">No results found</td></tr>
+                <tr ng-repeat="result in results track by $index">
+                    <td>{{$index + 1}}</td>
+                    <td>{{result.student}}</td>
+                    <td>{{result.grade_level}}</td>
+                    <td>{{result.lesson}}</td>
+                    <td>{{result.quiz}}</td>
+                    <td>{{result.finished}}</td>
+                    <td><a ui-sref=".result({id: result.id})" class="btn btn-primary">Show result</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+

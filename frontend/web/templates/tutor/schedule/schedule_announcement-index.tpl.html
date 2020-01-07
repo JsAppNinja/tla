@@ -1,0 +1,18 @@
+<div class="page-header">
+    <h2>Schedule and announcement</h2>
+</div>
+<div ncy-breadcrumb></div>
+
+<div>
+    <tabset>
+        <tab
+                ng-repeat="t in tabs"
+                heading="{{t.heading}}"
+                select="go(t.route)"
+                active="t.active">
+        </tab>
+    </tabset>
+    <div ui-view class="tab-content">
+
+    </div>
+</div>

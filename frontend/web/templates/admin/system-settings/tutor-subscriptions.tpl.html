@@ -1,0 +1,46 @@
+
+
+<div class="form-group hidden">
+    <label for="exampleInputAmount">Amount per student:</label>
+    <form class="form-inline">
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">$</div>
+                <input ng-model="system.settings.amount_per_student" type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                <div class="input-group-addon">.00</div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" ng-click="system.save_settings()">Save</button>
+    </form>
+</div>
+<label>Subscription plans:</label>
+<table class="table table-striped">
+    <tr>
+        <th>#</th>
+        <th>Plan name</th>
+        <th>Students count</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="plan in subscriptionPlans track by $index">
+        <td>{{ $index + 1}}</td>
+        <td>{{plan.name}}</td>
+        <td>{{plan.students_count}}</td>
+        <td>{{plan.amount}}</td>
+        <td>{{plan.description}}</td>
+        <td>
+            <div class="btn-group">
+                <button class="btn btn-sm btn-primary" ng-click="editSubscriptionPlanDialog(plan)"
+                        title="Edit subscription plan"><i
+                        class="fa fa-pencil-square-o"></i></button>
+                <button class="btn btn-sm btn-danger" ng-click="deleteSubscriptionPlan(plan, $index)"
+                        title="Delete subscription plan"><i class="fa fa-trash"></i>
+                </button>
+            </div>
+        </td>
+    </tr>
+</table>
+<div class="form-group">
+    <button class="btn btn-primary" ng-click="openCreateSubscriptionPlanDialog()">Create subscription plan</button>
+</div>

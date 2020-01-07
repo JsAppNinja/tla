@@ -1,0 +1,72 @@
+<h2 ng-show="!uploaded">{{edited?"Update":"Add"}} note</h2>
+<div cg-busy="{promise:loader,message:progress, backdrop:true, templateUrl:'/templates/tutor/loader.tpl.html'}"
+     class="video-cg-busy"></div>
+
+<form name="noteUpload" novalidate>
+    <div class="row" ng-show="!uploaded && !edited">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div ng-required="!edited" ngf-drop ngf-select ng-model="note.file"
+                     class="drag-file-block"
+                     accept="application/pdf,.docx,.doc,.xls,.xlsx,.ppt,.pptx,.txt,.rtf">
+                    <span ng-if="!note.file">Drag and drop file, or click for upload</span>
+                    <ul ng-if="note.file">
+                        <li>File name: {{note.file.name}}</li>
+                        <li>File size: {{note.file.size | humanizeFilesize}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="uploaded">
+        <div class="col-md-12 text-center">
+            <h1 style="color:green">Note successfully uploaded</h1>
+
+            <div class="icon icon--order-success svg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="72px" height="72px">
+                    <g fill="none" stroke="#8EC343" stroke-width="2">
+                        <circle cx="36" cy="36" r="35"
+                                style="stroke-dasharray:240px, 240px; stroke-dashoffset: 480px;"></circle>
+                        <path d="M17.417,37.778l9.93,9.909l25.444-25.393"
+                              style="stroke-dasharray:50px, 50px; stroke-dashoffset: 0px;"></path>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="!uploaded">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="note.status" ng-true-value="1" ng-false-value="0"> Active
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label required">Title</label>
+                <input type="text" class="form-control" ng-model="note.title" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label required">Description</label>
+                <textarea class="form-control" rows="3" ng-model="note.description" required></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="!uploaded">
+        <div class="col-md-12">
+            <button ng-show="!edited" type="submit" class="btn btn-success"
+                    ng-click="noteUpload.$valid?createNote(note, this):''">Create
+            </button>
+            <button ng-show="edited" type="submit" class="btn btn-success"
+                    ng-click="noteUpload.$valid?updateNote(note, this):''">Update
+            </button>
+            <button type="button" class="btn btn-primary" ng-click="closeThisDialog(0)">Cancel</button>
+        </div>
+    </div>
+</form>
+<div class="row" ng-show="uploaded">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-primary" ng-click="closeThisDialog(0)">Close</button>
+    </div>
+</div>

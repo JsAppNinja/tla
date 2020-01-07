@@ -1,0 +1,59 @@
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#"> Subjects </a></li>
+</ul>
+<div ncy-breadcrumb></div>
+
+<div class="row">
+    <div class="col-xs-4">
+        <div ui-view="subjects"></div>
+    </div>
+    <div class="col-xs-4">
+        <div ui-view="topics">
+            <div class="gag">
+                <div class="form-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Topics</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h3>Before adding the topic please select a subject</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" placeholder="Enter name of Topic" disabled class="form-control">
+                  <span class="input-group-btn">
+                      <button class="btn btn-primary pull-left disabled"><span
+                              class="glyphicon glyphicon-plus"></span>Add topic
+                      </button>
+                  </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div ui-view="subtopics">
+            <div class="gag">
+                <div class="form-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Sub-Topics</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h3>Before adding the sub-topic please select a topic</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" placeholder="Enter name of Sub-Topic" disabled class="form-control">
+                  <span class="input-group-btn">
+                      <button class="btn btn-primary pull-left disabled"><span
+                              class="glyphicon glyphicon-plus"></span>Add sub-topic
+                      </button>
+                  </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

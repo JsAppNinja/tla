@@ -1,0 +1,73 @@
+<div class="page-header">
+    <h2>Chat</h2>
+</div>
+<div ncy-breadcrumb></div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Accepted students</div>
+            <div class="list-group">
+                <a ui-sref-active="active" ui-sref=".messages({chat_id: chat.chat_id})"
+                   ng-repeat="chat in chats.users | filter:{type: 0} track by $index"
+                   class="list-group-item clearfix">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img ng-src="{{getAvatar(chat)}}" alt="" class="img-responsive">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="pull-left">
+                                <h4 class="list-group-item-heading">{{chat.user.first_name}}
+                                    {{chat.user.last_name}}</h4>
+                                <span class="label" ng-class="{'label-success': chat.online, 'label-default': !chat.online}">
+                                    {{chat.online?'Online':'Offline'}}
+                                </span>
+                            </div>
+                            <div class="pull-right">
+                                <div class="badge">{{chat.unreadCount}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="list-group-item-text last-message"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading">Students</div>
+            <div class="list-group">
+                <a ui-sref-active="active" ui-sref=".messages({chat_id: chat.chat_id})"
+                   ng-repeat="chat in chats.users | filter:{type: 1, user: {user_type: 1}}  track by $index"
+                   class="list-group-item clearfix">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img ng-src="{{getAvatar(chat)}}" alt="" class="img-responsive">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="pull-left">
+                                <h4 class="list-group-item-heading">{{chat.user.first_name}}
+                                    {{chat.user.last_name}}</h4>
+                                <span class="label" ng-class="{'label-success': chat.online, 'label-default': !chat.online}">
+                                    {{chat.online?'Online':'Offline'}}
+                                </span>
+                            </div>
+                            <div class="pull-right">
+                                <div class="badge">{{chat.unreadCount}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="list-group-item-text last-message"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div ui-view="messages"></div>
+    </div>
+</div>

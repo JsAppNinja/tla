@@ -1,0 +1,125 @@
+<div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            <a href="javascript:;" class="thumbnail">
+                <img src="{{profile.avatar?profile.avatar:'/images/no_avatar2.png'}}" alt="Avatar">
+            </a>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" ng-click="changeAvatar()">Change avatar</button>
+        </div>
+
+    </div>
+    <div class="col-md-10">
+        <div class="form-group">
+            <label>Video conference services</label>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <a href="https://www.mikogo.com/" target="_blank">
+                        <img width="150" src="/images/mikogo-logo.jpg" alt="">
+                    </a>
+                </div>
+                <div class="form-group">
+                    <p class="control-label">
+                        Mikogo is a desktop sharing software application for web conferencing and remote support, and is provided by the online collaboration provider, BeamYourScreen GmbH. Mikogo provides its software as native downloads for Windows, Mac OS X, Linux, iOS and Android. The software is cross-platform which allows a presenter to host the online meeting on a Windows computer and meeting attendees could join from a Windows, Mac, or Linux computer, as well as from smartphones or tablets. The software interface is multi-lingual and can be switched between one of 35 languages.
+                    </p>
+                </div>
+
+                <a href="https://www.mikogo.com/" target="_blank">
+                    https://www.mikogo.com
+                </a>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <a href="https://www.skype.com" target="_blank">
+                        <img width="150" src="/images/skype.png" alt="">
+                    </a>
+                </div>
+                <div class="form-group">
+                    <p class="control-label">
+                        Skype is an application that provides video chat and voice call services. Users may exchange such digital documents as images, text, video and any others, and may transmit both text and video messages. Skype allows the creation of video conference calls. Skype is available for Microsoft Windows, Macintosh, or Linux, as well as Android, Blackberry, and both Apple and Windows smartphones and tablets.
+                    </p>
+                </div>
+                <a href="https://www.skype.com/" target="_blank">
+                    https://www.skype.com
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="form-group required">
+            <label class="control-label">First name</label>
+            <input type="text" class="form-control" ng-model="profile.first_name" placeholder="Enter first name"
+                   required>
+        </div>
+        <div class="form-group required">
+            <label class="control-label">Last name</label>
+            <input type="text" class="form-control" ng-model="profile.last_name" placeholder="Enter last name" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Skype</label>
+            <input type="text" class="form-control" ng-model="profile.skype" placeholder="Enter skype">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Phone number</label>
+            <input type="text" class="form-control" ng-model="profile.phone" placeholder="Enter phone number">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Profile description
+                <i style="cursor:pointer;" class="fa fa-question-circle"
+                   uib-tooltip="Provide Information about yourself and your tutoring experience here. How many years
+of tutoring? Schools tutored, subjects, and other skills. This information will be displayed
+to students and their parents as part of their selection process"
+                   tooltip-placement="right"
+                ></i>
+
+            </label>
+            <textarea class="form-control" rows="8" ng-model="profile.profile_description"
+                      placeholder="Type your profile description"></textarea>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Payment description
+                <i style="cursor:pointer;" class="fa fa-question-circle"
+                   uib-tooltip="Provide your mobile number to be paid via Mobile money. If you prefer an alternate method of
+payment, indicate for student/parents to call you to discuss other payment method."
+                   tooltip-placement="right"
+                ></i>
+            </label>
+            <textarea class="form-control" rows="8" ng-model="profile.payment_description"
+                      placeholder="Type payment description"></textarea>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" ng-click="saveProfile()">Save profile info</button>
+        </div>
+        <div class="form-group">
+            <button ng-show="!profile.sample_video_link" class="btn btn-primary" ng-click="openAddSampleVideoDialog()">
+                <i class="fa fa-plus"></i> Add sample video
+            </button>
+            <button ng-show="profile.sample_video_link" class="btn btn-danger" ng-click="openDeleteVideoDialog()"><i
+                    class="fa fa-minus"></i> Remove sample video
+            </button>
+        </div>
+        <div class="form-group" ng-show="sampleVideo">
+            <label class="control-label">Sample video
+                <i style="cursor:pointer;" class="fa fa-question-circle"
+                   uib-tooltip="Video uploaded will be available to students searching for a
+tutor. Don’t forget to market your skills. You can also show
+examples of other videos you have created for specific
+subjects."
+                   tooltip-placement="right"
+                ></i></label>
+            <div class="form-group">
+                <div class="embed-responsive embed-responsive-16by9" ng-bind-html="sampleVideo"></div>
+            </div>
+        </div>
+    </div>
+</div>

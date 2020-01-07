@@ -1,0 +1,92 @@
+/*
+Stylus variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon_home_width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon_home = x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet = width height image $spritesheet_sprites;
+*/
+$main_logo_name = 'main_logo';
+$main_logo_x = 0px;
+$main_logo_y = 0px;
+$main_logo_offset_x = 0px;
+$main_logo_offset_y = 0px;
+$main_logo_width = 103px;
+$main_logo_height = 76px;
+$main_logo_total_width = 103px;
+$main_logo_total_height = 95px;
+$main_logo_image = '../images/sprite.png';
+$main_logo = 0px 0px 0px 0px 103px 76px 103px 95px '../images/sprite.png' 'main_logo';
+$try_out_name = 'try_out';
+$try_out_x = 0px;
+$try_out_y = 76px;
+$try_out_offset_x = 0px;
+$try_out_offset_y = -76px;
+$try_out_width = 12px;
+$try_out_height = 19px;
+$try_out_total_width = 103px;
+$try_out_total_height = 95px;
+$try_out_image = '../images/sprite.png';
+$try_out = 0px 76px 0px -76px 12px 19px 103px 95px '../images/sprite.png' 'try_out';
+$spritesheet_width = 103px;
+$spritesheet_height = 95px;
+$spritesheet_image = '../images/sprite.png';
+$spritesheet_sprites = $main_logo $try_out;
+$spritesheet = 103px 95px '../images/sprite.png' $spritesheet_sprites;
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  spriteWidth($icon_home)
+}
+
+.icon-email {
+  sprite($icon_email)
+}
+*/
+spriteWidth($sprite) {
+  width: $sprite[4];
+}
+
+spriteHeight($sprite) {
+  height: $sprite[5];
+}
+
+spritePosition($sprite) {
+  background-position: $sprite[2] $sprite[3];
+}
+
+spriteImage($sprite) {
+  background-image: url($sprite[8]);
+}
+
+sprite($sprite) {
+  spriteImage($sprite)
+  spritePosition($sprite)
+  spriteWidth($sprite)
+  spriteHeight($sprite)
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of Stylus
+
+This must be run when you have at least 2 sprites.
+  If run with a single sprite, then there will be reference errors.
+
+sprites($spritesheet_sprites);
+*/
+sprites($sprites) {
+  for $sprite in $sprites {
+    $sprite_name = $sprite[9];
+    .{$sprite_name} {
+      sprite($sprite);
+    }
+  }
+}

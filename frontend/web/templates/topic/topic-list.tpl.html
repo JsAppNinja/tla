@@ -1,0 +1,52 @@
+<div class="form-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Topics</h3>
+        </div>
+        <div class="panel-body panel-table-body">
+            <table class="table table-hover topics-list">
+                <h3 ng-show="isEmptyTopics" style="margin-left: 29px;">No topics</h3>
+                <tr ng-repeat="topic in topics track by $index" class="topic-item"
+                    ng-click="showSubTopics(topic.id, $event)">
+                    <td><span editable-text="topic.name" e-form="textBtnForm"
+                              onbeforesave="checkName($data)" onaftersave="updateTopic(topic.id)">
+                                        <span ng-bind="topic.name"></span>
+                                     </span></td>
+                    <td>
+                        <button title="Remove topic" ng-click="deleteTopic($index)"
+                                class="btn btn-xs btn-danger pull-right"><span
+                                class="glyphicon glyphicon-remove"></span></button>
+                        <button data-toggle="popover" title="Edit topic"
+                                ng-click="$event.preventDefault(); textBtnForm.$show()"
+                                ng-hide="textBtnForm.$visible"
+                                class="btn btn-xs btn-primary pull-right examtype-edit-btn"><span
+                                class="glyphicon glyphicon-pencil"></span></button>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<form novalidate name="topicform" ng-submit="createTopic(topicform.$valid)">
+    <div class="input-group form-group">
+        <input type="text" ng-model="newTopic.name" placeholder="Enter name of Topic" required class="form-control">
+                  <span class="input-group-btn">
+                      <button ng-disabled="topicform.$invalid" type="submit" class="btn btn-primary pull-left"><span
+                              class="glyphicon glyphicon-plus"></span>Add topic
+                      </button>
+                  </span>
+    </div>
+</form>
+<script type="text/ng-template" id="templateTopic">
+    <div class="ngdialog-message">
+        <h1>Removal of Topic</h1>
+        <p>You really want to delete "{{ deletedTopic.name }}" topic ?</p>
+        <p><strong>Be aware: </strong>If you delete this topic, all subtopics related to this topic will be removed </p>
+    </div>
+    <div class="ngdialog-buttons mt">
+        <button class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">No</button>
+        <button class="ngdialog-button ngdialog-button-primary" ng-click="confirm(deletedTopic.id)">Yes</button>
+    </div>
+</script>

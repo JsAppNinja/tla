@@ -1,0 +1,24 @@
+<div class="page-header">
+    <h2>Admins</h2>
+</div>
+<div ncy-breadcrumb></div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <button class="btn btn-primary" ng-click="openAddAdminDialog()"><i class="fa fa-plus"></i> Add admin</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Admins list</div>
+            <div class="list-group">
+                <a href="javascript:;" class="list-group-item clearfix" ng-repeat="admin in admins track by $index">
+                    <span class="pull-left">{{admin.email}}</span>
+                    <span class="pull-right"><button ng-click="deleteAdmin(admin, $index)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

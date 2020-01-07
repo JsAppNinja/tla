@@ -1,0 +1,39 @@
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#"> Subjects </a></li>
+</ul>
+<div ncy-breadcrumb></div>
+
+<div class="col-xs-12">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <h3 class="panel-title pull-left">Questions</h3>
+
+            <div class="btn-group pull-right" role="group" aria-label="...">
+                <a ui-sref="examIndex.exam.subjectShow.quizzes.question.create()" class="btn btn-xs btn-primary "><span
+                        class="glyphicon glyphicon-plus"></span></a>
+
+            </div>
+        </div>
+        <div class="panel-body panel-table-body">
+            <table class="table questions-list table-striped">
+                <h3 ng-show="isEmptyQuestions" style="margin-left: 29px;">No questions</h3>
+                <tr ng-repeat="question in questions track by $index" class="question-list-item">
+                    <td>
+                        <span>{{ $index + 1 }}. {{question.content | htmlToPlaintext}}</span></td>
+                    <td>
+                        <button ng-click="deleteQuestion(question.id)" class="btn btn-xs btn-danger pull-right"><span
+                                class="glyphicon glyphicon-remove"></span></button>
+                        <a ui-sref=".edit({question_id: question.id})"
+                           class="btn btn-xs btn-primary pull-right subject-manage-btn"><span
+                                class="glyphicon glyphicon-pencil"></span></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    function openfileDialog() {
+        $("#fileLoader").click();
+    }
+</script>

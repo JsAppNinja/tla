@@ -1,0 +1,70 @@
+<div class="page-header">
+    <h2>Step 1 - Levels</h2>
+    <span class="lead">Start setting up your class by entering the Level at which you want to teach e.g. grade 1, class 1, Form 6 or Level 1</span>
+</div>
+<div ncy-breadcrumb></div>
+<div class="row">
+    <div class="col-xs-12">
+        <form novalidate class="examtype-form" name="examtypeForm">
+            <div class="form-group create-type-btn col-xs-2">
+                <button ng-click="createExam(newExam)" class="btn btn-primary" role="button">Create teaching level</button>
+            </div>
+            <div class="form-group col-xs-3">
+                <input ng-model="newExam.name" type="text" class="form-control" placeholder="Enter new">
+            </div>
+            <div class="form-group">
+                <label>E.g. Grade 1, Class 1, Form 1, Level 1</label>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                <h3 class="panel-title">Teaching level list</h3>
+            </div>
+            <div class="panel-body panel-table-body">
+                <table class="table table-hover table-striped examtype-list">
+                    <tr ng-repeat="exam in exams track by $index">
+                        <td>
+                            <span editable-text="exam.name" e-form="textBtnForm" onaftersave="updateExam(exam)">
+                                <a ui-sref=".level({level_id: exam.id})" ng-click=""> <span ng-bind="exam.name"></span> </a>
+                            </span>
+                            <a ng-show="isAdmin" ng-click="checkFree(exam)" class="editable-link" href="javascript:;">
+                                {{ exam.free && " accepted in Free Q&A" || " is not accepted in Free Q&A" }}
+                            </a>
+                            <span style="font-size: 90%" class="label" ng-class="{'label-success':exam.active, 'label-danger':!exam.active}">{{exam.active?'Active':'Inactive'}}</span>
+                        </td>
+                        <td>
+                            <button title="Remove exam" ng-click="deleteExam(exam)"
+                                    class="btn btn-xs btn-danger pull-right"><span
+                                    class="glyphicon glyphicon-remove"></span></button>
+                            <button title="Edit exam" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"
+                                    class="btn btn-xs btn-primary pull-right examtype-edit-btn"><span
+                                    class="glyphicon glyphicon-pencil"></span></button>
+                            <button ng-click="changeState(exam)" class="btn btn-xs btn-default pull-right examtype-edit-btn">{{exam.active?'Deactivate':'Activate'}}</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <span class="lead">Proceed to <strong>step 2</strong> by selecting the new grade, class, form or level you created</span>
+    </div>
+</div>
+
+<script type="text/ng-template" id="templateExamtype">
+    <div class="ngdialog-message">
+        <h1>Removal of examtype</h1>
+
+        <p>Do You really want to delete "{{ deletedExamtype.name }}" examtype ?</p>
+
+        <p><strong>Be aware: </strong>If you delete this examtype, all subjects related to this examtype will be removed
+        </p>
+    </div>
+    <div class="ngdialog-buttons mt">
+        <button class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">No</button>
+        <button class="ngdialog-button ngdialog-button-primary" ng-click="confirm(deletedExamtype.id)">Yes</button>
+    </div>
+</script>

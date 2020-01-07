@@ -1,0 +1,19 @@
+<div class="page-header">
+    <h2>Edit {{page_name}}</h2>
+</div>
+<div ncy-breadcrumb></div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group" ng-repeat="block in blocks track by $index">
+            <label>{{block.name}}</label>
+            <textarea ui-tinymce="tinymceOptions" ng-model="block.content" cols="30" rows="10"></textarea>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <button class="btn btn-primary" ng-click="save()"><i class="fa fa-check" aria-hidden="true"></i> Save</button>
+        </div>
+    </div>
+</div>

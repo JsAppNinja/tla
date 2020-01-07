@@ -1,0 +1,110 @@
+<div class="page-header">
+    <h2>Users list</h2>
+</div>
+<div ncy-breadcrumb></div>
+<div class="row">
+    <div class="col-md-3 col-md-offset-4 text-center">
+        <p class="lead">
+            Registered students: {{registered.students}}<br>
+            Registered tutors: {{registered.tutors}}<br>
+            Registered schools: {{registered.schools}}
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group ">
+            <label class="control-label">Select user type</label>
+            <ui-select ng-model="userType.selected" style="min-width: 300px;" ng-required="true" on-select="selectUserType($select.selected)">
+                <ui-select-match allow-clear="true" placeholder="Select user type ...">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="userType in userTypes | filter: $select.search">
+                    <div ng-bind-html="userType.name | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+</div>
+<div class="form-group" ng-show="system.settings.payment_enabled">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="subscribed"> Subscribed users
+        </label>
+    </div>
+</div>
+<table class="table table-striped" ng-show="!subscribed" ng-if="system.settings.payment_enabled">
+    <tr>
+        <th></th>
+        <th>#</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Registration date</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="user in filteredUsers track by $index">
+        <td>
+            <button ng-if="!user.deleted" class="btn btn-danger" ng-click="deleteUser(user, $index)"><span class="glyphicon glyphicon-trash"></span></button>
+            <button ng-if="user.deleted" class="btn btn-success" ng-click="restoreUser(user, $index)"><span class="glyphicon glyphicon-refresh"></span></button>
+        </td>
+        <td>{{$index + 1}}</td>
+        <td>{{user.first_name}}</td>
+        <td>{{user.last_name}}</td>
+        <td>{{ user.created_at | date : 'longDate'}}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.subscribed?'Subscribed':'Free' }}</td>
+        <td>
+            <button ng-if="!user.subscribed" class="btn btn-primary" ng-click="giveManualSubscriptionDialog(user)">Give subscription</button>
+            <span ng-if="user.subscribed">{{user.plan ? 'Subscription plan: ' + user.plan.name : ' - '}}</span>
+        </td>
+    </tr>
+</table>
+<table class="table table-striped" ng-show="subscribed" ng-if="system.settings.payment_enabled">
+    <tr>
+        <th></th>
+        <th>#</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Registration date</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="user in filteredUsers track by $index" ng-if="user.subscribed">
+        <td>
+            <button ng-if="!user.deleted" class="btn btn-danger" ng-click="deleteUser(user, $index)"><span class="glyphicon glyphicon-trash"></span></button>
+            <button ng-if="user.deleted" class="btn btn-success" ng-click="restoreUser(user, $index)"><span class="glyphicon glyphicon-refresh"></span></button>
+        </td>
+        <td>{{$index + 1}}</td>
+        <td>{{user.first_name}}</td>
+        <td>{{user.last_name}}</td>
+        <td>{{ user.created_at | date : 'longDate'}}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.subscribed?'Subscribed':'Free' }}</td>
+        <td>
+            <span>{{user.plan ? 'Subscription plan: ' + user.plan.name : ' - '}}</span>
+        </td>
+    </tr>
+</table>
+
+<table class="table table-striped" ng-if="!system.settings.payment_enabled">
+    <tr>
+        <th></th>
+        <th>#</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Registration date</th>
+        <th>Email</th>
+    </tr>
+    <tr ng-repeat="user in filteredUsers track by $index">
+        <td>
+            <button ng-if="!user.deleted" class="btn btn-danger" ng-click="deleteUser(user, $index)"><span class="glyphicon glyphicon-trash"></span></button>
+            <button ng-if="user.deleted" class="btn btn-success" ng-click="restoreUser(user, $index)"><span class="glyphicon glyphicon-refresh"></span></button>
+        </td>
+        <td>{{$index + 1}}</td>
+        <td>{{user.first_name}}</td>
+        <td>{{user.last_name}}</td>
+        <td>{{ user.created_at | date : 'longDate'}}</td>
+        <td>{{ user.email }}</td>
+    </tr>
+</table>

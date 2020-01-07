@@ -1,0 +1,41 @@
+<div class="panel panel-default question-section-panel" ng-repeat="section in sections track by $index">
+    <div class="panel-heading clearfix" data-toggle="collapse" data-target="#section{{$index}}" aria-expanded="false" aria-controls="collapseExample">
+        <h3 class="panel-title pull-left section-title">Section #{{$index+1}}. {{section.description}}</h3>
+        <div class="btn-group pull-right" role="group" aria-label="...">
+            <a ui-sref="examIndex.exam.subjectShow.quizzes.question.section({section_id: section.id})"
+               class="btn btn-xs btn-primary "><span
+                    class="glyphicon glyphicon-plus"></span> Add question</a>
+            <button ng-click="deleteSection($index);$event.stopPropagation();" class="btn btn-xs btn-danger"><span
+                    class="glyphicon glyphicon-remove"></span> Delete section
+            </button>
+        </div>
+    </div>
+    <div class="panel-body panel-table-body collapse" id="section{{$index}}">
+        <div class="section-description">
+            <label>Section description</label>
+            <div class="form-group">
+                <textarea name="" id="" rows="5" class="form-control" ng-model="section.description"></textarea>
+            </div>
+            <div class="form-group">
+                <button ng-click="updateDescription(section)" class="btn btn-primary">Update description</button>
+            </div>
+        </div>
+        <div class="section-questions">
+            <label>Questions</label>
+            <h3 ng-show="!section.questions.length">No questions</h3>
+            <table class="table questions-list table-striped">
+                <tr ng-repeat="question in section.questions track by $index" class="question-list-item">
+                    <td>
+                        <span>{{ $index + 1 }}. {{question.content | htmlToPlaintext}}</span></td>
+                    <td>
+                        <button ng-click="deleteSectionQuestion(question)" class="btn btn-xs btn-danger pull-right"><span
+                                class="glyphicon glyphicon-remove"></span></button>
+                        <a ui-sref=".sectionedit({section_id: section.id,question_id: question.id})"
+                           class="btn btn-xs btn-primary pull-right subject-manage-btn"><span
+                                class="glyphicon glyphicon-pencil"></span></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

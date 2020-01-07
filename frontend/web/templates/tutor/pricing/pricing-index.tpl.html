@@ -1,0 +1,108 @@
+<div class="page-header">
+    <h2>Pricing</h2>
+</div>
+<div ncy-breadcrumb></div>
+<div>
+    <div class="row" ng-show="mm.state">
+        <div class="col-md-12">
+            <div style="font-size: 24px">
+                <p><strong>Mobile Money payment phone number(s)</strong></p>
+                <p><strong> {{selectedCountry.phones}}</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul id="tabs" class="nav nav-pills col-md-3 col-md-offset-5" style="margin-bottom: 20px;">
+                <li ng-click="toggleMM(false)" ng-class="{active: !mm.state}"><a href="javascript:;"><i
+                        class="fa fa-paypal"></i> PayPal</a></li>
+                <li ng-click="toggleMM(true)" ng-class="{active: mm.state}" ng-show="hasMM"><a href="javascript:;"><i
+                        class="fa fa-mobile"></i> Mobile Money</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="my-tab-content" class="tab-content">
+                <div ng-show="!mm.state" id="red">
+                    <div class="row flexBlock">
+                        <div class="col-md-3" ng-repeat="subscriptionPlan in subscriptionPlans track by $index">
+                            <div class="panel panel-default text-center">
+                                <form class="panel-form" action="tutor-subscription/checkout" method="post">
+                                    <div>
+                                        <input type="hidden" name="plan_id" value="{{subscriptionPlan.id}}">
+                                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                                        <h1 ng-bind="subscriptionPlan.name"></h1>
+                                        <p><strong>Teach {{subscriptionPlan.students_count}}</strong></p>
+
+                                        <p ng-if="!subscriptionPlan.free"><strong>${{subscriptionPlan.amount /
+                                            subscriptionPlan.students_count}} per student</strong>
+                                        </p>
+                                        <p>{{subscriptionPlan.description}}</p>
+                                    </div>
+                                    <div>
+                                        <div class="form-group" ng-if="currentPlan.id !== subscriptionPlan.id">
+                                            <button ng-if="!subscriptionPlan.free" type="submit"
+                                                    class="btn btn-primary">Subscribe for
+                                                ${{subscriptionPlan.amount}}/Month
+                                            </button>
+                                            <button ng-if="subscriptionPlan.free" ng-click="switchPlan(subscriptionPlan)"
+                                                    class="btn btn-primary">Subscribe for
+                                                free
+                                            </button>
+                                        </div>
+                                        <div class="form-group" ng-if="currentPlan.id === subscriptionPlan.id">
+                                            <h2>Current plan</h2>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="orange" ng-show="mm.state">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-md-1 control-label">Country: </label>
+                                    <div class="col-md-3">
+                                        <select class="form-control"
+                                                ng-options="option.name for option in countries track by option.id"
+                                                ng-model="selectedCountry"
+                                                ng-change="setPlans(selectedCountry)"></select>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row flexBlock">
+                        <div class="col-md-3" ng-repeat="subscriptionPlan in subscriptionPlans track by $index"
+                             ng-if="subscriptionPlan.mm">
+                            <div class="panel panel-form panel-default text-center" style="padding: 5px;">
+                                <div>
+                                    <p style="margin-top: 10px;">{{subscriptionPlan.name}}</p>
+
+                                    <h1>Students: {{subscriptionPlan.students_count}}</h1>
+
+                                    <p><strong>{{ selectedCountry.currency }} {{subscriptionPlan.perStudentPrice}} per
+                                        student</strong></p>
+
+                                    <p>{{ subscriptionPlan.description }}</p>
+                                </div>
+                                <div>
+                                    <p>Subscribe for:</p>
+
+                                    <div style="font-size: 30px">{{ selectedCountry.currency }}
+                                        {{subscriptionPlan.mm}}/Month
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="page-header">
+    <h2>Home page</h2>
+</div>
+<div ncy-breadcrumb></div>
+<h2>Help videos</h2>
+<p class="lead">The videos here will help you understand how to setup your classroom as a tutor. <br> It will also provide information on “How To” use a number of features on this site.</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="video-list row">
+            <div class="video-list__item col-md-3" ng-repeat="tutorsVideo in tutorsVideos">
+                <div class="form-group">
+                    <div ng-mouseover="video_actions = true" ng-mouseleave="video_actions = false"
+                         style="position: relative;">
+                        <img style="width: 100%;" ng-src="{{tutorsVideo.video.preview_img}}" alt="">
+                        <div ng-if="tutorsVideo.video.status == 1" class="btn-group tutor-video-actions-single" ng-show="video_actions">
+                            <button class="btn btn-success btn-lg" ng-click="showVideo(tutorsVideo, $event)"><i class="fa fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="video-list__item__title">
+                        {{tutorsVideo.title}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

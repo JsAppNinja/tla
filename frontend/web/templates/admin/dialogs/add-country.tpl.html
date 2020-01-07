@@ -1,0 +1,62 @@
+<div class="page-header">
+    <h2>{{edit?"Update":"Add"}} country</h2>
+</div>
+<form name="countryForm" novalidate editable-form>
+    <div class="form-group">
+        <label>Country name:</label>
+        <input type="text" ng-model="newCountry.name" class="form-control" placeholder="Country name" required>
+    </div>
+    <div class="form-group">
+        <label>Currency:</label>
+        <input type="text" ng-model="newCountry.currency" class="form-control"
+               placeholder="Currency" required>
+    </div>
+</form>
+
+<div class="form-group">
+    <label>Phones:</label>
+
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="newCountry.number" placeholder="Type phone number">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" ng-click="newCountry.number?addPhoneNumber():''"><i
+                        class="fa fa-plus"></i> Add
+                </button>
+            </span>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <tr>
+            <th>#</th>
+            <th>Number</th>
+            <th style="width:80px;"></th>
+        </tr>
+        <tr ng-if="!newCountry.phones.length">
+            <td colspan="3">No phone numbers</td>
+        </tr>
+        <tr ng-repeat="phone in newCountry.phones track by $index">
+            <td>{{ $index + 1}}</td>
+            <td>
+                    <span editable-text="phone.number" e-form="textBtnForm">
+                        <span ng-bind="phone.number"></span>
+                    </span>
+            </td>
+            <td>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-primary btn-sm" ng-click="textBtnForm.$show()"
+                            ng-hide="textBtnForm.$visible"><i class="fa fa-pencil"></i></button>
+                    <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="ngdialog-buttons">
+    <button type="button" class="ngdialog-button btn btn-danger" ng-click="closeThisDialog(0)">Cancel</button>
+    <button type="submit" class="ngdialog-button btn btn-primary"
+            ng-click="countryForm.$valid?confirm(newCountry):''">
+        {{edit?"Update country":"Add Country"}}
+    </button>
+</div>

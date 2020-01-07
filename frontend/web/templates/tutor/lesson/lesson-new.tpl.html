@@ -1,0 +1,36 @@
+<div class="page-header">
+    <h2>New lesson</h2>
+</div>
+<div ncy-breadcrumb></div>
+
+<div class="row">
+    <div class="col-xs-6">
+        <form name="lessonForm" novalidate>
+            <div class="form-group required">
+                <label class="control-label" for="name">Lesson name</label>
+                <input id="name" ng-model="lesson.title" type="text" name="name" placeholder="Enter lesson name"
+                       class="form-control" required>
+            </div>
+            <div class="form-group required">
+                <label class="control-label" for="description">Lesson description</label>
+        <textarea id="description" ng-model="lesson.description" name="description" class="form-control" rows="6"
+                  placeholder="Description" required></textarea>
+            </div>
+            <div class="form-group flex-content flex-justify-between">
+                <button type="submit" class="btn btn-primary" ng-click="!lessonForm.$invalid?saveLesson(lesson):'' ">Save</button>
+                <a ui-sref="grade-index.level.subject.lessons" id="back-lesson-list"
+                   class="btn btn-default pull-right">Back to lessons list</a>
+            </div>
+        </form>
+    </div>
+    <div class="col-xs-6">
+        <ul ng-show="lessonForm.$invalid && lessonForm.$submitted" id="errors">
+            <li ng-messages="lessonForm.name.$error">
+                <span ng-message="required">Lesson name field is required</span>
+            </li>
+            <li ng-messages="lessonForm.description.$error">
+                <span ng-message="required">Lesson description field is required</span>
+            </li>
+        </ul>
+    </div>
+</div>

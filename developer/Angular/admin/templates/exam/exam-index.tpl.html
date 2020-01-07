@@ -1,0 +1,44 @@
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#" ng-bind="title"></a></li>
+</ul>
+<div ncy-breadcrumb></div>
+<div class="row">
+    <div class="col-xs-12">
+        <form novalidate class="examtype-form" name="examtypeForm">
+            <div class="form-group create-type-btn col-xs-2">
+                <button ng-click="createExam(newExam)" class="btn btn-primary" role="button">Create {{title}}</button>
+            </div>
+            <div class="form-group col-xs-3">
+                <input ng-model="newExam.name" type="text" class="form-control" placeholder="Enter new">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                <h3 class="panel-title">Grade levels list</h3>
+            </div>
+            <div class="panel-body panel-table-body">
+                <table class="table table-hover table-striped examtype-list">
+                    <tr ng-repeat="exam in exams track by $index">
+                        <td><span editable-text="exam.name" e-form="textBtnForm" onaftersave="updateExam(exam)">
+                <a ui-sref=".exam({exam_id: exam.id})"> <span ng-bind="exam.name"></span> </a>
+            </span></td>
+                        <td>
+                            <button title="Remove exam" ng-click="deleteExam(exam.id)"
+                                    class="btn btn-xs btn-danger pull-right"><span
+                                    class="glyphicon glyphicon-remove"></span></button>
+                            <button title="Edit exam" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"
+                                    class="btn btn-xs btn-primary pull-right examtype-edit-btn"><span
+                                    class="glyphicon glyphicon-pencil"></span></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

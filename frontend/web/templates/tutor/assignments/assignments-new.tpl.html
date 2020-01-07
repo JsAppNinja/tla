@@ -1,0 +1,73 @@
+<style>
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    .progress {
+        display: inline-block;
+        width: 150px;
+        vertical-align: top;
+        margin-right: 20px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-6">
+        <form name="frmNewAssignment" novalidate ng-submit="saveAssignment(assignment)">
+            <div class="form-group">
+                <label class="control-label">Assignment name</label>
+                <input type="text" class="form-control" ng-model="assignment.name"
+                       placeholder="Enter new assignment name" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Assignment description</label>
+                <textarea rows="5" class="form-control" ng-model="assignment.description"
+                          placeholder="Enter new assignment description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Uploaded files</label>
+                <div ng-show="!assignment.assignmentFiles.length">No files</div>
+                <ul>
+                    <li class="clearfix" style="margin-bottom: 5px;"
+                        ng-repeat="f in assignment.assignmentFiles track by $index">
+                        <span style="margin-right: 10px;"><button type="button" ng-click="deleteFile(f, $index)"
+                                                                  class="btn btn-danger btn-xs"><i
+                                class="fa fa-trash"></i></button></span>
+                        <span>{{f.origin_name}}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <label class="control-label">Upload a file with you assignment</label>
+            <div class="form-group">
+                <button class="btn btn-primary" ngf-select accept="'.png,.jpg,.docx,.pdf,.doc,.txt,.xls,.xlsx'"
+                        ng-model="files" ngf-multiple="true"><i class="fa fa-upload" aria-hidden="true"></i> Upload
+                </button>
+            </div>
+            <div class="form-group">
+                <ul>
+                    <li ng-repeat="f in files track by $index">
+                        <span class="progress">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                 aria-valuenow="f.progress" aria-valuemin="0" aria-valuemax="100"
+                                 style="min-width: 2em; width: {{f.progress}}%">
+                                {{f.progress > 0?f.progress:0}}%
+                                <span class="sr-only">{{f.progress}}% Complete</span>
+                            </div>
+                        </span>
+                        {{f.name}}&nbsp;
+                        <span ng-show="f.progress > 0" class="label"
+                              ng-class="f.progress < 100?'label-warning':'label-success'">{{f.progress < 100?'uploading ...':'success'}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">{{edited?'Update':'Save'}}</button>
+                <a ui-sref="grade-index.level.subject.lessons.materials.assignments" class="btn btn-default pull-right">Back
+                    to assignments list</a>
+            </div>
+        </form>
+    </div>
+</div>

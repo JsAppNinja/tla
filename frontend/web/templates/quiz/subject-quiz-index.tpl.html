@@ -1,0 +1,73 @@
+<div cg-busy="{promise:myPromise,message:'Importing quiz data, please wait ...',backdrop:true,delay:300,minDuration:700}">
+    <div noty-container></div>
+    <div class="form-group create-quiz-btn">
+        <a ui-sref=".create" id="new-quize" class="btn btn-primary" role="button"><span
+                class="glyphicon glyphicon-plus"></span> Add new quiz</a>
+        <button type="button" class="btn btn-default" ngf-drop ngf-select ng-model="files" class="drop-box"
+                ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+                accept=".xlsx,.xls"
+                ngf-pattern="'.xlsx,.xls'">
+            <span
+                    class="glyphicon glyphicon-import"></span>Import Quiz
+        </button>
+        <button ng-if="sorted" ng-click="saveOrder()" class="btn btn-success"><i class="fa fa-check-circle-o"></i> Save
+            order
+        </button>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default ">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Quizzes list</h3>
+                </div>
+                <div class="panel-body panel-table-body">
+                    <h3 ng-show="!quizzes.length" style="margin-left: 29px;">No quizzes</h3>
+                    <ul style="margin: 0;padding: 0;" ng-sortable="sortConfig">
+                        <li ng-click="openQuiz(quiz.id)" ng-repeat="quiz in quizzes track by quiz.id" class="quiz-item">
+                            <table class="table table-hover quiz-list vert-align">
+                                <tr>
+                                    <td class="sorting-handle"><i class="fa fa-sort"></i></td>
+                                    <td>
+                                        <span>{{quiz.name}}</span>
+                                    </td>
+                                    <td class="text-right">
+                                        <span style="font-size: 90%" class="label" ng-class="{'label-success':quiz.active, 'label-danger':!quiz.active}">{{quiz.active?'Active':'Inactive'}}</span>
+                                    </td>
+                                    <td style="width: 340px;">
+                                        <button ng-click="$event.stopPropagation();deleteQuiz(quiz)"
+                                                class="btn btn-xs btn-danger pull-right"><span
+                                                class="glyphicon glyphicon-remove"></span></button>
+                                        <a ui-sref=".edit({quiz_id: quiz.id})" ng-click="$event.stopPropagation()"
+                                           class="btn btn-xs btn-primary pull-right subject-manage-btn"><span
+                                                class="glyphicon glyphicon-pencil"></span></a>
+                                        <a href="javascript:;" ng-click="$event.stopPropagation()"
+                                           class="btn btn-xs btn-default pull-right subject-manage-btn"><span>Access rights</span></a>
+                                        <a ng-click="$event.stopPropagation()" ui-sref=".question({quiz_id: quiz.id})"
+                                           class="btn btn-xs btn-default pull-right subject-manage-btn"><span>Questions</span>
+                                        </a>
+                                        <a href="javascript:;" ng-click="$event.stopPropagation()"
+                                           class="btn btn-xs btn-default pull-right subject-manage-btn" ui-sref="quiz-preview({quiz_id: quiz.id})"><span><i class="fa fa-eye" aria-hidden="true"></i> Quiz preview</span></a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="templateId">
+    <div class="ngdialog-message">
+        <h1>Quiz removal</h1>
+
+        <p>You really want to delete "{{ deletedQuiz.name }}" quiz ?</p>
+
+        <p><strong>Be aware: </strong>If you delete this quiz, all questions related to this quiz will be removed </p>
+    </div>
+    <div class="ngdialog-buttons mt">
+        <button class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">No</button>
+        <button class="ngdialog-button ngdialog-button-primary" ng-click="confirm(deletedQuiz.id)">Yes</button>
+    </div>
+</script>

@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-12 tutorCard" ng-repeat="student in students track by $index">
+        <div class="tutorCard--container">
+            <div class="media-left">
+                <img width="100" class="media-object" ng-src="{{getAvatar(student)}}" alt="...">
+            </div>
+            <div class="media-body">
+                <div class="tutorCard--title">
+                    <span style="margin-right: 40px;">{{student.first_name + ' ' + student.last_name}}</span>
+                </div>
+                <hr>
+                <div class="form-group col-md-3">
+                    <button class="btn btn-success" ng-disabled="student.sending" ng-click="acceptStudent(student, $index)"><i
+                            class="fa fa-plus"></i> Accept
+                    </button>
+                    <button class="btn btn-danger" ng-disabled="student.sending" ng-click="rejectStudent(student, $index)"><i
+                            class="fa fa-minus"></i> Reject
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

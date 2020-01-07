@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Students access list</h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="student in students track by $index">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-click="setState(student)" ng-model="student.active" ng-true-value="1" ng-false-value="0"> {{student.first_name + ' ' + student.last_name}}
+                </label>
+            </div>
+        </li>
+    </ul>
+</div>

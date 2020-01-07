@@ -1,0 +1,82 @@
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#"> Subjects </a></li>
+</ul>
+<div ncy-breadcrumb></div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="page-header">
+            <h1>New Question</h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label>Question content</label>
+                <textarea id="content" placeholder="New question ..." ui-tinymce="tinymceOptions"
+                          ng-model="question.content" class="form-control" rows="6"
+                        >{{question.content}}</textarea>
+        </div>
+        <div ng-show="essay" class="form-group">
+            <label>Sample essay</label>
+                <textarea id="sample_essay" placeholder="New question ..." ui-tinymce="tinymceOptions"
+                          ng-model="question.sample_essay" class="form-control" rows="6"
+                        >{{question.sample_essay}}</textarea>
+        </div>
+        <div ng-hide="essay" ui-view="answers">
+        </div>
+
+        <div class="form-inline form-group">
+            <div class="form-group">
+                <button ng-click="saveQuestion()" class="btn btn-primary">Save</button>
+            </div>
+            <a ui-sref="examIndex.exam.subjectShow.quizzes.question" class="btn btn-default pull-right">Back to
+                questions list</a>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="topic">Topic</label>
+                    <select ng-model="selectedTopic" id="topic" class="form-control"
+                            ng-options="topic.name for topic in topics">
+                        <option value="">No Topic</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="subtopic">Subtopic</label>
+                    <select ng-model="selectedSubTopic" id="subtopic" class="form-control"
+                            ng-options="subtopic.name for subtopic in subtopics">
+                        <option value="">No Sub-topic</option>
+                    </select>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="essay" ng-false-value="0" ng-true-value="1"> Essay
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <img ng-show="!files.length" src="http://indrayoga.eu/wp-content/themes/patus/images/no-image-half-landscape.png" alt="Image"
+                         class="question-img img-thumbnail">
+                    <button class="btn btn-primary" ngf-select="uploadFiles($files)" multiple
+                            accept="image/*">Add images
+                    </button>
+                </div>
+                    <span class="progress" ng-show="progress >= 0">
+                        <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+                     </span>
+                <ul style="list-style: none;margin: 0;padding: 0;">
+                    <li ng-repeat="f in files" class="question-img">
+                        <div>
+                            <img class="img-thumbnail" ngf-src="f" ngf-no-object-url="false">
+                            <button ng-click="removeImage(f)" class="delete-image-button btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

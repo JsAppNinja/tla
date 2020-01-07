@@ -1,0 +1,361 @@
+@import "../fonts/ubuntu.css"
+@import "mixins"
+@import "sprites"
+@import "Components/*"
+
+body
+  font-family Ubuntu, serif
+
+.blue-bg
+  background-color: #0165AB
+.blue-half-bg
+  background-color: #0165ab;
+  height: 500px;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+
+#terms
+  color #FFF
+  padding-bottom: 40px
+  position: relative
+  button
+    background: #4D4D4D;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.50);
+    border-radius: 3px;
+    font-family: Ubuntu, serif;
+    font-size: 14px;
+    color: #FFFFFF;
+    line-height: 36px;
+    text-decoration: underline;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    z-index: 40;
+  & .first
+    position: absolute
+    top: -40px;
+    right: 10%;
+  & .second
+    position: absolute
+    top: 0
+    right: 0
+  & .third
+    position: absolute
+    top: -40px;
+    left: 0
+  & .fourth
+    position: absolute
+    top: 0;
+    left: 13%;
+
+h1.title
+  text-align: center;
+  padding: 75px 0 40px;
+  #terms &
+    color #fff
+
+section#videoAndSample
+  padding-top: 40px
+  margin-top: 83px
+
+.top-line
+  height: 20px
+  top: 0
+  position: fixed
+  width: 100%
+  z-index 100
+  background-color: #0165ab
+.navbar-nav>li>a {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#tryOut
+  margin-top: 30px
+  background-color: #fff;
+  display: none
+  margin-bottom: 30px
+  padding: 15px
+table.styled
+  width: 100%
+  tr
+    height: 60px
+    td
+      .btn
+        background-color: #0164a8;
+        margin: 14px;
+        color: #fff;
+      &:first-of-type
+        padding-left: 10px;
+    &:nth-child(odd)
+      background-color: #ffead9;
+.arrow-big
+  .button-big.opened &
+    transform: rotate(180deg);
+  sprite($try_out)
+  display: inline-block
+  transition: all 1s ease;
+  transform: rotate(0deg);
+  position: absolute;
+  right: 15px;
+  top: 35px;
+
+.button-big
+  outline none
+  background-color: #FF9036;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.50);
+  border-radius: 3px;
+  color: #FFFFFF;
+  font-size: 24px;
+  line-height: 20px;
+  margin: 0 auto;
+  padding: 13px 25px;
+  display: block;
+  position: relative;
+  z-index: 10
+  white-space normal
+  &:hover
+    box-shadow: none;
+    outline none
+    color: #FFFFFF;
+
+  &:focus
+    color: #FFFFFF;
+  &:active, &.active
+    outline none
+    background-color: #4D4D4D;
+    box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.50);
+    border-radius: 3px;
+
+  .contacts_inputs &
+    width: 100%
+.btn
+  &:focus
+    outline none
+
+.circle
+  width: 200px;
+  height: 200px;
+  background: #0065ab;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 28px auto
+  & img
+    margin: 0 auto;
+
+.circle-title
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: block;
+  font-size: 20px;
+  text-align: center;
+.terms_shell
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  z-index: 20;
+  height: 375px;
+  overflow: hidden;
+  color: #FFF;
+
+.gradient
+  background: linear-gradient(to bottom, transparent 0%, #0065ab 100%);
+  display: block;
+  height: 105px;
+  position: absolute;
+  width: 100%;
+  top: 270px;
+  z-index: 30;
+
+.contact_shell
+  margin: 0 auto;
+
+footer
+  margin: 0 auto;
+  background-color: #0065ab;
+  text-decoration: underline;
+  color: #fff;
+  height: 90px;
+  position: relative;
+  z-index: 20;
+
+.button_to_top
+  background: #4D4D4D;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.50);
+  border-radius: 3px;
+  font-family: Ubuntu, serif;
+  font-size: 14px;
+  color: #FFFFFF;
+  line-height: 17px;
+  top: -15px;
+  text-decoration: underline;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  z-index: 40;
+
+.arrow_top
+  background-image: url("/temporary/images/scrolltotopsomething.png");
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 11px;
+  display: inline-block;
+  margin-right: 5px;
+
+.contact_shell
+  padding-bottom: 50px
+
+footer > div > span:nth-of-type(1)
+  float: right;
+footer > div > span:nth-of-type(2)
+  float: left;
+
+.contacts_inputs div:nth-child(2) .form-control {
+  background: url(../images/last_name.png) no-repeat scroll 8px 9px;
+  padding-left: 30px;
+  background-color: #ffffff;
+  font-style: italic;
+}
+
+.contacts_inputs div:nth-child(3) .form-control {
+  background: url(../images/last_name.png) no-repeat scroll 8px 9px;
+  padding-left: 30px;
+  background-color: #ffffff;
+  font-style: italic;
+}
+
+.contacts_inputs div:nth-child(4) .form-control {
+  background: url(../images/last_name.png) no-repeat scroll 8px 9px;
+  padding-left: 30px;
+  background-color: #ffffff;
+  font-style: italic;
+}
+
+.contacts_inputs div:nth-child(5) .form-control {
+  background: url(../images/country.png) no-repeat scroll 8px 9px;
+  padding-left: 30px;
+  background-color: #ffffff;
+  font-style: italic;
+}
+
+.contacts_inputs .help-block-error {
+  display: none !important;
+}
+
+.contacts_inputs div:nth-child(6) .form-control {
+  background: url(../images/e-mail.png) no-repeat scroll 8px 9px;
+  padding-left: 30px;
+  background-color: #ffffff;
+  font-style: italic;
+}
+
+.contacts_inputs div:nth-child(7) .form-control {
+  background: url(../images/phone.png) no-repeat scroll 8px 9px;
+  padding-left: 30px;
+  background-color: #ffffff;
+  font-style: italic;
+}
+
+.contacts_inputs textarea.form-control {
+  background: url(../images/comment.png) no-repeat scroll 8px 9px;
+  padding-left: 30px;
+  background-color: #ffffff;
+  font-style: italic;
+  margin-bottom: 15px;
+  resize: none;
+}
+
+.slide_up_login .close_btn
+  background-color: transparent;
+  border: transparent;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+
+.slide_up_login
+  padding: 20px
+  display: none
+
+
+.slide_up_login span,.slide_up_login span a {
+  text-decoration: underline;
+  color: #fff;
+}
+
+.social span{
+  margin-right: 10px;
+}
+
+.form-inline .checkbox  {
+  padding-top: 0!important
+}
+.checkbox label {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.forgot-link {
+  color: #FF7200 !important;
+}
+
+.checkbox
+  margin-top: 0
+  margin-bottom: 0
+
+
+
+.slide_up_login
+  .close_btn
+    i
+      color: #fafafa;
+    &:focus
+      outline none
+
+.main-container
+  background-color: #fff;
+  position: relative;
+  top: 150px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 15px 1px rgba(143, 143, 143, 1);
+  padding: 20px;
+  margin-bottom: 200px;
+  padding-bottom: 50px
+@media (max-width: 768px) and (orientation:portrait) {
+  .hidden-xs-portlet {
+    display: none!important
+  }
+  .result_block {
+    font-size: 77px;
+  }
+  .practice_question .question, .questions_list .question {
+    font-size 14px
+  }
+  .answers_list {
+    font-size 14px
+  }
+}
+.answers_block
+  .state
+    span
+      margin: 20px 0
+
+.panel-body.text-center p
+  padding: 0
+  margin-bottom: 2px
+
+.free-video__item
+  padding: 10px
+
+.free-video__item:nth-child(odd)
+  background-color: #ffead9;
+
+.viewVideoButton
+  position: absolute;
+  bottom:20px;
+  right:0;

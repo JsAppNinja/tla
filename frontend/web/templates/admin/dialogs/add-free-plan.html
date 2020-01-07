@@ -1,0 +1,24 @@
+<div class="page-header">
+    <h2>{{edit?'Update free plan' : 'Create free plan'}}</h2>
+</div>
+<form name="freePlan" novalidate editable-form>
+    <div class="form-group">
+        <label>Plan name:</label>
+        <input type="text" class="form-control" required name="planName" ng-model="newFree.name">
+    </div>
+    <div class="form-group">
+        <label>Students count:</label>
+        <input type="number" min="1" required class="form-control" value="1" name="planStudents" ng-model="newFree.students_count">
+    </div>
+    <div class="form-group">
+        <label>Plan description:</label>
+        <textarea rows="7" class="form-control" required name="planDescription" ng-model="newFree.description"></textarea>
+    </div>
+</form>
+<div class="ngdialog-buttons">
+    <button type="button" class="ngdialog-button btn btn-danger" ng-click="closeThisDialog(0)">Cancel</button>
+    <button type="submit" class="ngdialog-button btn btn-primary"
+            ng-click="freePlan.$valid?confirm(newFree):''">
+        {{edit?"Update":"Create"}}
+    </button>
+</div>

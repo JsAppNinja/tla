@@ -1,0 +1,13 @@
+<div class="page-header">
+    <h2>Give manual subscription for {{ngDialogData.userTitle}}</h2>
+</div>
+<div class="form-group">
+    <label>Number of month:</label>
+    <input class="form-control" type="number" min="1" ng-model="manualSubscription.month" value="1">
+</div>
+<div class="form-group">
+    <div class="ngdialog-buttons">
+        <button type="button" class="ngdialog-button btn btn-danger" ng-click="closeThisDialog(0)">Cancel</button>
+        <button type="submit" class="ngdialog-button btn btn-primary" ng-click="confirm(manualSubscription)">Apply</button>
+    </div>
+</div>

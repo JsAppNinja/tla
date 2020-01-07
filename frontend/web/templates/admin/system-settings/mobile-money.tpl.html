@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md-12">
+        <label>Countries list:</label>
+        <div class="form-group">
+            <button class="btn btn-primary" ng-click="showAddCountryDialog()"><i class="fa fa-plus"></i> Add country</button>
+        </div>
+        <table class="table table-striped">
+            <tr>
+                <th>#</th>
+                <th>Country name</th>
+                <th>Currency</th>
+                <th>Phones</th>
+                <th>Actions</th>
+            </tr>
+            <tr ng-if="!countries.length">
+                <td colspan="5">No countries</td>
+            </tr>
+            <tr ng-repeat="country in countries track by $index">
+                <td>{{ $index + 1}}</td>
+                <td>{{ country.name }}</td>
+                <td>{{ country.currency }}</td>
+                <td>{{ country.phones }}</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-primary btn-sm" ng-click="showEditCountryDialog(country)"><i class="fa fa-pencil"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm" ng-click="deleteCountry(country)"><i class="fa fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

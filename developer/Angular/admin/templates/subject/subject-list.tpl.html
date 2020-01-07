@@ -1,0 +1,30 @@
+<div class="form-group">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <h3 class="panel-title pull-left">Subjects</h3>
+            <div class="btn-group pull-right" role="group" aria-label="...">
+                <button ng-disabled="isEmptyOriginSubjects" title="Add subject" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-xs btn-primary "><span class="glyphicon glyphicon-plus"></span></button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="subjectOrigin in listOrigin"><a
+                            ng-click="addSubject(subjectOrigin)" href="javascript:;"> {{
+                        subjectOrigin.name }} </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-body panel-table-body">
+            <table class="table table-hover subject-list">
+                <h3 ng-show="isEmptySubjects" style="margin-left: 29px;">No subjects</h3>
+                <tr ng-repeat="subject in subjects" class="subject-item"
+                    ng-click="showTopics(subject.id, $event)">
+                    <td><span ng-bind="subject.name"></span></td>
+                    <td><button ng-click="deleteSubject(subject.id)" title="Remove subject"
+                                class="btn btn-xs btn-danger pull-right subject-manage-btn"><span
+                            class="glyphicon glyphicon-remove"></span></button>
+                        <a ui-sref=".subjectShow.quizzes({exam_id: exam_id, subject_id: subject.id})" title="View subject"
+                           class="btn btn-xs btn-primary pull-right subject-manage-btn glyphicon glyphicon-eye-open"></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

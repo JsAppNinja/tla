@@ -1,0 +1,140 @@
+<div class="page-header">
+    <h2>Video list</h2>
+</div>
+<div ncy-breadcrumb></div>
+
+<uib-tabset>
+    <uib-tab heading="Free/Payed videos">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label class="control-label">Select subject</label>
+                    <ui-select ng-model="videoFilter.subject.selected" style="min-width: 300px;" ng-required="true"
+                               on-select="filterVideo($select.selected)">
+                        <ui-select-match allow-clear="true" placeholder="Select subject ...">{{$select.selected.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="subject in subjects | filter: $select.search">
+                            <div ng-bind-html="subject.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-click="addVideo()"><i class="fa fa-plus"></i> Add video</button>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-click="addMultiplyVideo()"><i class="fa fa-plus"></i> Add multiply video</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Payed videos</h3>
+            </div>
+            <div class="panel-body">
+
+                <div ng-sortable="sortPayedConfig" class="video-list">
+                    <div class="media video-list__item" ng-repeat="payedVideo in payedVideos">
+                        <div class="media-left">
+                            <img width="50" class="media-object" ng-src="{{payedVideo.preview_img}}" alt="">
+                        </div>
+                        <div class="media-body clearfix">
+                            <div class="pull-right">
+                                <button class="btn btn-success" ng-click="showVideo(payedVideo, $event)"><i
+                                        class="fa fa-play"></i></button>
+                                <button class="btn btn-primary" ng-click="openEditVideoDialog(payedVideo, $event)"><i
+                                        class="fa fa-pencil-square-o"></i></button>
+                                <button class="btn btn-danger" ng-click="openDeleteVideoDialog(payedVideo, $event)"><i
+                                        class="fa fa-trash"></i></button>
+
+                            </div>
+                            <h4 class="media-heading">{{payedVideo.title}} / {{getVideoSubject(payedVideo)}}</h4>
+                            {{payedVideo.description}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Free videos</h3>
+            </div>
+            <div class="panel-body">
+                <div ng-sortable="sortFreeConfig" class="video-list">
+                    <div class="media video-list__item" ng-repeat="freeVideo in freeVideos">
+                        <div class="media-left">
+                            <img width="50" class="media-object" ng-src="{{freeVideo.preview_img}}" alt="">
+                        </div>
+                        <div class="media-body clearfix">
+                            <div class="pull-right">
+                                <button class="btn btn-success" ng-click="showVideo(freeVideo, $event)"><i
+                                        class="fa fa-play"></i></button>
+                                <button class="btn btn-primary" ng-click="openEditVideoDialog(freeVideo, $event)"><i
+                                        class="fa fa-pencil-square-o"></i></button>
+                                <button class="btn btn-danger" ng-click="openDeleteVideoDialog(freeVideo, $event)"><i
+                                        class="fa fa-trash"></i></button>
+
+                            </div>
+                            <h4 class="media-heading">{{freeVideo.title}} / {{getVideoSubject(freeVideo)}}</h4>
+                            {{freeVideo.description}}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </uib-tab>
+    <uib-tab heading="Tutors help videos">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-click="addTutorHelpVideo()"><i class="fa fa-plus"></i> Add video
+                    </button>
+                </div>
+                <hr>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Tutors help videos</h3>
+            </div>
+            <div class="panel-body">
+
+                <div ng-sortable="sortTutorConfig" class="video-list">
+                    <div class="media video-list__item" ng-repeat="tutorsVideo in tutorsVideos">
+                        <div class="media-left">
+                            <img width="50" class="media-object" ng-src="{{tutorsVideo.video.preview_img}}" alt="">
+                        </div>
+                        <div class="media-body clearfix">
+                            <div class="pull-right">
+                                <button class="btn btn-success"
+                                        ng-click="showVideo(tutorsVideo.video, $event)"><i
+                                        class="fa fa-play"></i></button>
+                                <button class="btn btn-primary"
+                                        ng-click="openEditTutorVideoDialog(tutorsVideo, $event)"><i
+                                        class="fa fa-pencil-square-o"></i></button>
+                                <button class="btn btn-danger"
+                                        ng-click="openDeleteTutorVideoDialog(tutorsVideo, $event)"><i
+                                        class="fa fa-trash"></i></button>
+
+                            </div>
+                            <h4 class="media-heading">{{tutorsVideo.title}}</h4>
+                            {{tutorsVideo.description}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+</uib-tabset>

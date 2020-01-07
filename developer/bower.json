@@ -1,0 +1,33 @@
+{
+  "name": "developer",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "supostat <ipugachev84@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eeh-navigation": "^4.4.0",
+    "angular-atomic-notify": "^1.0.4",
+    "angular-ui-notification": "^0.1.0",
+    "checklist-model": "^0.9.0",
+    "ui-select": "angular-ui-select#^0.16.0",
+    "angularjs-humanize": "^0.0.1",
+    "ng-img-crop": "ngImgCrop#^0.3.2",
+    "angular-base64": "^2.0.5",
+    "humanize": "^0.0.9",
+    "components-font-awesome": "^4.5.0",
+    "angular-sanitize": "^1.5.3",
+    "angularjs-slider": "^2.11.0",
+    "ng-scrollbars": "^0.0.10"
+  }
+}

@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="materialsList">
+            <h3 ng-bind="assignment.assignment.name"></h3>
+            <p ng-bind="assignment.assignment.description"></p>
+            <div class="form-group">
+                                    <span ng-repeat="f in assignment.assignment.files track by $index"
+                                          style="margin-right: 20px;position: relative;"
+                                    ><i class="file-ico"></i><a
+                                            ng-href="{{'/uploads/assignments/' + assignment.assignment.id + '/' + f.name}}"
+                                            download="{{f.origin_name}}" style="padding-left: 17px;"
+                                            title="Download note">{{f.origin_name}}</a></span>
+            </div>
+            <div class="form-group">
+                                <span><i class="fa"
+                                         aria-hidden="true"
+                                         ng-class="{'fa-caret-down': !assignment.showComments, 'fa-caret-up': assignment.showComments}"
+                                ></i> <strong
+                                        style="cursor: pointer;"
+                                        ng-click="assignment.showComments = !assignment.showComments"
+                                >Students</strong></span>
+
+            </div>
+            <div class="form-group" ng-show="assignment.showComments">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Students list</div>
+                            <div class="list-group">
+                                <div ng-repeat="student in assignment.students track by $index">
+                                    <a
+                                         ui-sref=".comments({student_id: student.id})"
+                                         class="list-group-item">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img width="50" class="media-object"
+                                                     ng-src="{{getStudentAvatar(student)}}"
+                                                     alt="...">
+                                            </div>
+                                            <div class="media-body">
+                                                <strong>{{student.first_name + ' ' + student.last_name }}</strong>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div ui-view="comments"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

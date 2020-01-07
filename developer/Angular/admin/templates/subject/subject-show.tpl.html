@@ -1,0 +1,24 @@
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#"> Subjects </a></li>
+</ul>
+<div ncy-breadcrumb></div>
+<div>
+
+    <tabset>
+        <tab
+                ng-repeat="t in tabs"
+                heading="{{t.heading}}"
+                select="go(t.route)"
+                active="t.active">
+        </tab>
+    </tabset>
+    <!--<ul class="nav nav-tabs" id="subjectElementsTab">-->
+        <!--<li class="active"><a id="video" ui-sref=".video" >Video</a></li>-->
+        <!--<li><a ui-sref=".elements({slug: 'notes'})" >Notes</a></li>-->
+        <!--<li><a id="quiz" ui-sref=".quizzes" >Quizzes</a></li>-->
+        <!--<li ><a ui-sref=".elements({slug: 'assignments'})" >Assignments</a></li>-->
+    <!--</ul>-->
+    <div ui-view class="tab-content">
+
+    </div>
+</div>

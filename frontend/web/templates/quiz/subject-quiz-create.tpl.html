@@ -1,0 +1,65 @@
+<div class="page-header">
+    <h1>New Quiz</h1>
+</div>
+<div class="col-xs-6">
+    <form name="quizForm" ng-submit="submit()" novalidate>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="quiz.active" ng-true-value="1" ng-false-value="0"> Active
+                </label>
+            </div>
+        </div>
+        <div class="form-group required">
+            <label class="control-label" for="name">Quiz name</label>
+            <input id="name" ng-model="quiz.name" type="text" name="name" placeholder="Enter quiz name"
+                   class="form-control" required>
+        </div>
+        <div class="form-group required">
+            <label class="control-label" for="description">Quiz description</label>
+        <textarea id="description" ng-model="quiz.description" name="description" class="form-control" rows="6"
+                  placeholder="Description" required></textarea>
+        </div>
+        <div class="form-group required">
+            <label class="control-label">Quiz date</label>
+
+            <div class="dropdown">
+                <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" href="javascript:;">
+                    <div class="input-group"><input placeholder="Date" type="text" class="form-control"
+                                                    data-ng-model="quiz.date" name="
+                                                    date"  required><span class="input-group-addon"><i
+                            class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-on-set-time="onTimeSet(newDate, oldDate)" data-ng-model="quiz.date"
+                                    data-datetimepicker-config="{ startView:'month', minView:'month', dropdownSelector: '#dropdown2' }" >
+                </ul>
+            </div>
+        </div>
+        <div class="form-group required">
+            <label class="control-label">Quiz length (Hours and Minutes)</label>
+            <uib-timepicker ng-model="quiz.hours" show-meridian="false" hour-step="1" minute-step="5">
+                <!--<input id="hours" type="number" placeholder="Hours" class="form-control" ng-model="quiz.hours" min="0" value="0">-->
+        </div>
+        <div class="form-group flex-content flex-justify-between">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button disabled class="btn btn-default">Attach video with solution</button>
+            <a ui-sref="examIndex.exam.subjectShow.quizzes" id="back-quiz-list"
+               class="btn btn-default pull-right">Back</a>
+        </div>
+    </form>
+</div>
+<div class="col-xs-6">
+    <ul ng-show="quizForm.$invalid && quizForm.$submitted" id="errors">
+        <li ng-messages="quizForm.name.$error">
+            <span ng-message="required">Quiz name field is required</span>
+        </li>
+        <li ng-messages="quizForm.description.$error">
+            <span ng-message="required">Quiz description field is required</span>
+        </li>
+        <li ng-messages="quizForm.date.$error">
+            <span ng-message="required">Quiz date field is required</span>
+        </li>
+    </ul>
+</div>

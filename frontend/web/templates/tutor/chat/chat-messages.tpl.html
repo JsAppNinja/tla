@@ -1,0 +1,40 @@
+<div id="sc" class="panel panel-default">
+    <div class="panel-heading">Messages list</div>
+    <div class="panel-body" ng-if="!messages.length">No messages</div>
+    <ul class="list-group"
+        ng-show="messages.length"
+        ng-scrollbars
+        ng-scrollbars-config="element.config"
+        ng-scrollbars-update="element.updateScrollbar">
+        <li class="list-group-item clearfix" id="message_{{$index}}" ng-repeat="message in messages track by $index">
+            <div class="talk-bubble"
+                 ng-class="{
+                    'message':message.owner == 0,
+                    'pull-left':message.owner == 0,
+                    'pull-right':message.owner == 1,
+                    'my-message': message.owner == 1,
+                     }">
+                <div class="talktext">
+                    <p class="message-header clearfix">
+                        <span class="message-owner pull-left">{{message.sender}}</span>
+                        <span class="message-date pull-right">{{ getTime(message.created_at) }}</span>
+                    </p>
+                    <p>{{message.body}}</p>
+                </div>
+                <div class="new" ng-if="message.isNew"></div>
+            </div>
+        </li>
+    </ul>
+    <div class="panel-footer clearfix">
+        <form ng-submit="sendMessage()">
+            <div class="form-group">
+                <label>Type your message:</label>
+                <textarea class="form-control" rows="3" ng-model="newMessage.message" bn-cmd-enter
+                          placeholder="Use CDM+Enter to send a message."></textarea>
+            </div>
+            <div class="form-group pull-right">
+                <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+        </form>
+    </div>
+</div>

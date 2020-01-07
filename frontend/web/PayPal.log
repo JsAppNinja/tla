@@ -1,0 +1,20 @@
+[08-02-2016 10:00:18] PayPal\Core\PayPalHttpConnection: INFO	: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[08-02-2016 10:00:19] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 200
+[08-02-2016 10:00:19] PayPal\Core\PayPalHttpConnection: INFO	: POST https://api.sandbox.paypal.com/v1/vault/credit-cards
+[08-02-2016 10:00:21] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 201
+[08-02-2016 10:00:23] PayPal\Core\PayPalHttpConnection: INFO	: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[08-02-2016 10:00:25] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 200
+[08-02-2016 10:00:25] PayPal\Core\PayPalHttpConnection: INFO	: POST https://api.sandbox.paypal.com/v1/vault/credit-cards
+[08-02-2016 10:00:26] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 201
+[08-02-2016 10:00:27] PayPal\Core\PayPalHttpConnection: INFO	: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[08-02-2016 10:00:29] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 200
+[08-02-2016 10:00:29] PayPal\Core\PayPalHttpConnection: INFO	: POST https://api.sandbox.paypal.com/v1/vault/credit-cards
+[08-02-2016 10:00:30] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 201
+[08-02-2016 10:01:19] PayPal\Core\PayPalHttpConnection: INFO	: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[08-02-2016 10:01:21] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 200
+[08-02-2016 10:01:21] PayPal\Core\PayPalHttpConnection: INFO	: POST https://api.sandbox.paypal.com/v1/vault/credit-cards
+[08-02-2016 10:01:23] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 201
+[08-02-2016 10:03:05] PayPal\Core\PayPalHttpConnection: INFO	: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[08-02-2016 10:03:07] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 200
+[08-02-2016 10:03:07] PayPal\Core\PayPalHttpConnection: INFO	: POST https://api.sandbox.paypal.com/v1/vault/credit-cards
+[08-02-2016 10:03:08] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 201

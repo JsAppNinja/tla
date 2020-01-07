@@ -1,0 +1,77 @@
+<div class="form-group">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <h3 class="panel-title pull-left">Subjects</h3>
+
+            <div class="btn-group pull-right" role="group" aria-label="...">
+                <button title="Add subject" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true" class="btn btn-xs btn-primary "><span
+                        class="glyphicon glyphicon-plus"></span></button>
+                <ul style="width: 300px;" class="dropdown-menu subjects-list" ng-sortable="sortConfig"
+                    aria-labelledby="dropdownMenu1">
+                    <li ng-mouseenter="delete=true" ng-mouseleave="delete=false" ng-repeat="subjectOrigin in listOrigin"
+                        class="clearfix"><a style="padding: 8px 20px;"
+                                            ng-click="addSubject(subjectOrigin)" href="javascript:;"> {{
+                        subjectOrigin.name }} <span ng-show="delete"
+                                                    ng-click="deleteSubject(subjectOrigin);$event.stopPropagation()"
+                                                    class="btn btn-xs btn-danger pull-right glyphicon glyphicon-remove subject-delete-button"></span></a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        <div class="input-group form-group" style="padding: 5px;margin: 0;">
+                            <input ng-model="newSubject.name" type="text" placeholder="Enter subject name"
+                                   class="form-control">
+                  <span class="input-group-btn">
+                      <button ng-click="createSubject(newSubject);$event.stopPropagation()"
+                              class="btn btn-primary pull-left"><span class="glyphicon glyphicon-plus"></span>Add
+                          subject
+                      </button>
+                  </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-body panel-table-body">
+            <ul style="margin: 0;padding: 0;" ng-sortable="sortConfig">
+                <li ng-repeat="subject in subjects">
+                    <table class="table table-hover subject-list vert-align">
+                        <h3 ng-show="isEmptySubjects" style="margin-left: 29px;">No subjects</h3>
+                        <tr class="subject-item"
+                            ng-click="showTopics(subject.id, $event)">
+                            <td class="sorting-handle"><i class="fa fa-sort"></i></td>
+                            <td><span ng-bind="subject.name"></span></td>
+                            <td>
+                                <button ng-click="removeSubject(subject)" title="Remove subject"
+                                        class="btn btn-xs btn-danger pull-right subject-manage-btn"><span
+                                        class="glyphicon glyphicon-remove"></span></button>
+                                <a ui-sref=".subjectShow.quizzes({exam_id: exam_id, subject_id: subject.id})"
+                                   title="View subject"
+                                   class="btn btn-xs btn-primary pull-right subject-manage-btn glyphicon glyphicon-eye-open"></a>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div class="form-group">
+    <button ng-if="sorted" ng-click="saveOrder()" class="btn btn-success"><i class="fa fa-check-circle-o"></i> Save
+        order
+    </button>
+</div>
+
+<script type="text/ng-template" id="templateSubject">
+    <div class="ngdialog-message">
+        <h1>Removal of Subject</h1>
+        <p>You really want to delete "{{ deletedSubject.name }}" subject ?</p>
+        <p><strong>Be aware: </strong>If you delete this subject, all quizzes, questions, topics and subtopics related
+            to this subject will be removed </p>
+    </div>
+    <div class="ngdialog-buttons mt">
+        <button class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">No</button>
+        <button class="ngdialog-button ngdialog-button-primary" ng-click="confirm(deletedSubject.id)">Yes</button>
+    </div>
+</script>

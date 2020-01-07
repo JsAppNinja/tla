@@ -1,0 +1,45 @@
+<h2>Feedbacks</h2>
+
+<div class="ngdialog-close"></div>
+<div class="dialog-contents">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group" ng-if="!hasFeedback">
+                <label for="feedbackText">Feedback text</label>
+                <textarea id="feedbackText" ng-model="feedbackText.text" class="form-control" rows="7"></textarea>
+            </div>
+            <div class="form-group clearfix" ng-if="!hasFeedback">
+                <button promise-btn type="submit" class="ngdialog-button btn btn-primary"
+                        ng-click="sendFeedback(feedbackText.text)">Send feedback
+                </button>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="media" ng-repeat="feedback in feedbacks | reverse track by $index">
+                <div class="media-left media-top">
+                    <a href="javascript:;">
+                        <img width="100px" class="media-object img-thumbnail" ng-src="{{feedback.student.avatar || '/images/no_avatar2.png'}}" alt="">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h3 style="padding: 0;margin: 0 0 7px 0">{{feedback.student.first_name}} {{feedback.student.last_name}}</h3>
+                    <p class="lead" style="font-size: 18px">{{feedback.text}}</p>
+                    <p class="pull-right small">{{feedback.created_at }}</p>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="ngdialog-buttons">
+            <button type="submit" class="ngdialog-button btn btn-primary"
+                    ng-click="closeThisDialog(0)">Close dialog
+            </button>
+        </div>
+    </div>
+</div>

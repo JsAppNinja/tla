@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <textarea rows="10" ui-tinymce="tinymceOptions" ng-model="result.comment" rows="10"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <button class="btn btn-primary" ng-click="confirm()">{{result.edited?'Update comment':'Add comment'}}</button>
+            <button class="btn btn-danger" ng-click="closeThisDialog()">Cancel</button>
+        </div>
+    </div>
+</div>

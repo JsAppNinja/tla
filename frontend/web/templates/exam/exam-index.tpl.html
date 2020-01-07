@@ -1,0 +1,73 @@
+<div class="page-header">
+    <h2>Exam types list</h2>
+</div>
+<div ncy-breadcrumb></div>
+<div class="row">
+    <div class="col-xs-12">
+        <form novalidate class="examtype-form" name="examtypeForm">
+            <div class="form-group create-type-btn col-xs-2">
+                <button ng-click="createExam(newExam)" class="btn btn-primary" role="button">Create {{title}}</button>
+            </div>
+            <div class="form-group col-xs-3">
+                <input ng-model="newExam.name" type="text" class="form-control" placeholder="Enter new">
+            </div>
+        </form>
+        <div class="form-group">
+            <button ng-if="sorted" ng-click="saveOrder()" class="btn btn-success"><i class="fa fa-check-circle-o"></i> Save
+                order
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{title}}s list</h3>
+            </div>
+            <div class="panel-body panel-table-body">
+                <ul style="margin: 0;padding: 0;" ng-sortable="sortConfig">
+                    <li ng-repeat="exam in exams track by $index">
+                        <table class="table table-hover table-striped examtype-list vert-align">
+                            <tr>
+                                <td class="sorting-handle"><i class="fa fa-sort"></i></td>
+
+                                <td><span editable-text="exam.name" e-form="textBtnForm" onaftersave="updateExam(exam)">
+                <a ui-sref=".exam({exam_id: exam.id})"> <span ng-bind="exam.name"></span> </a>
+            </span>
+                                    <a ng-show="isAdmin" ng-click="checkFree(exam)" class="editable-link"
+                                       href="javascript:;">
+                                        {{ exam.free && " accepted in Free Q&A" || " is not accepted in Free Q&A" }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <button title="Remove exam" ng-click="deleteExam(exam)"
+                                            class="btn btn-xs btn-danger pull-right"><span
+                                            class="glyphicon glyphicon-remove"></span></button>
+                                    <button title="Edit exam" ng-click="textBtnForm.$show()"
+                                            ng-hide="textBtnForm.$visible"
+                                            class="btn btn-xs btn-primary pull-right examtype-edit-btn"><span
+                                            class="glyphicon glyphicon-pencil"></span></button>
+                                </td>
+                            </tr>
+                        </table>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="templateExamtype">
+    <div class="ngdialog-message">
+        <h1>Removal of examtype</h1>
+        <p>Do You really want to delete "{{ deletedExamtype.name }}" examtype ?</p>
+        <p><strong>Be aware: </strong>If you delete this examtype, all subjects related to this examtype will be removed
+        </p>
+    </div>
+    <div class="ngdialog-buttons mt">
+        <button class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">No</button>
+        <button class="ngdialog-button ngdialog-button-primary" ng-click="confirm(deletedExamtype.id)">Yes</button>
+    </div>
+</script>

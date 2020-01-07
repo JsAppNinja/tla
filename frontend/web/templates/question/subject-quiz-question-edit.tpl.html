@@ -1,0 +1,88 @@
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#"> Subjects </a></li>
+</ul>
+<div ncy-breadcrumb></div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="page-header">
+            <h1>Edit Question</h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label for="content">Question content</label>
+                <textarea id="content" ui-tinymce="tinymceOptions" ng-model="question.content" class="form-control" rows="6"
+                        >{{question.content}}</textarea>
+        </div>
+
+        <div ng-show="question.essay" class="form-group">
+            <label>Sample essay</label>
+                <textarea id="sample_essay" placeholder="New question ..." ui-tinymce="tinymceOptions"
+                          ng-model="question.sample_essay" class="form-control" rows="6"
+                        >{{question.sample_essay}}</textarea>
+        </div>
+
+        <div ng-hide="question.essay" ui-view="answers">
+        </div>
+
+        <div class="form-inline form-group">
+            <div class="form-group">
+                <button ng-click="updateQuestion(question)" class="btn btn-primary">Update</button>
+            </div>
+            <a ui-sref="examIndex.exam.subjectShow.quizzes.question" class="btn btn-default pull-right">Back to
+                questions list</a>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="topic">Topic</label>
+                    <select ng-model="selectedTopic" id="topic" class="form-control" ng-options="topic.name for topic in topics">
+                        <option value="">No Topic</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="subtopic">Subtopic</label>
+                    <select ng-model="selectedSubTopic" id="subtopic" class="form-control" ng-options="subtopic.name for subtopic in subtopics">
+                        <option value="">No Sub-topic</option>
+                    </select>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="question.essay" ng-false-value="0" ng-true-value="1"> Essay
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <label>Images</label>
+                <div class="form-group">
+                    <img ng-show="!images.length && !newImages.length" src="http://indrayoga.eu/wp-content/themes/patus/images/no-image-half-landscape.png" alt="Image" class="question-img img-thumbnail">
+                    <button class="btn btn-primary" ngf-select="uploadImages($files)" multiple
+                            accept="image/*">Add images
+                    </button>
+                </div>
+                <ul class="question-image-list">
+                    <li ng-repeat="image in images track by $index" class="question-img">
+                        <div>
+                            <a ng-click="openLightboxModal($index)">
+                                <img ng-src="{{image.path}}" class="img-thumbnail">
+                            </a>
+                            <button ng-click="removeImage(images, image)" class="delete-image-button btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="question-image-list">
+                    <li ng-repeat="newImage in newImages track by $index" class="question-img">
+                        <div>
+                            <img class="img-thumbnail" ngf-src="newImage" ngf-no-object-url="false">
+                            <button ng-click="removeImage(newImages, newImage)" class="delete-image-button btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

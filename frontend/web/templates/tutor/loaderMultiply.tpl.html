@@ -1,0 +1,19 @@
+<div class="loader-block">
+
+    <div class="progress-text">
+        <div class="row" style="padding-left: 40px;padding-right: 40px;">
+            <div class="col-md-12" ng-repeat="file in $message track by $index">
+                {{file.name}}
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}%">
+                        {{file.progress}}%
+                        <span class="sr-only">{{file.progress}}% Complete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="loader-text" style="top: auto;position: relative;">
+            <p>Please stand by while video uploading ...</p>
+        </div>
+    </div>
+</div>

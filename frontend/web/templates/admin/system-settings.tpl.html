@@ -1,0 +1,15 @@
+<div class="page-header">
+    <h2>System settings</h2>
+</div>
+<div ncy-breadcrumb></div>
+<ul class="nav nav-tabs" ng-if="system.settings.payment_enabled">
+    <li ui-sref-active="active"><a ui-sref=".student-subscriptions-settings">Student subscriptions</a></li>
+    <li ui-sref-active="active"><a ui-sref=".tutor-subscriptions-settings">Tutor subscriptions</a></li>
+    <li ui-sref-active="active"><a ui-sref=".mobile-money-settings">Mobile money</a></li>
+</ul>
+<div class="row">
+    <div class="col-xs-12">
+        <div ui-view="system-settings">
+        </div>
+    </div>
+</div>
